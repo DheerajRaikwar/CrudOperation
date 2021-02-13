@@ -26,12 +26,25 @@
     {
         console.log("Please Enter Name")
     }
-    console.log(nm);
+    else{
+        mydata = {name:nm,email:em,password:pas,Dob:dob,city:city}
+        $.ajax({
+            url:"{%url 'save' %}",
+            method:"POST",
+            data : mydata,
+            success:function(data){
+                console.log(data);
+            },
+
+
+        })
+    }
+    /*console.log(nm);
     console.log(em);
     console.log(dob);
     console.log(city);
     console.log(pas);
-    
+    */ 
 
     });
     

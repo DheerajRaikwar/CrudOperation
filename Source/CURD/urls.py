@@ -19,5 +19,6 @@ from main import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.Homepage,name='home')
+    path('',views.Homepage,name='home'),
+    path('save/',views.save_file,name='save'),
 ]
