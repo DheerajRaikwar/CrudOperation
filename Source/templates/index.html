@@ -2,13 +2,26 @@
 {% load static %}
 {% block indexblock %}
 
-<form method="post">
-   
-    {%csrf_token%}
-    {{form.as_p}}
+<div class="row">
+    <div class='col-sm-4'>       
+ 
+        <div class="container mt-5">
+             <h2 class="text-left alert alert-info"> Fill Record </h2>
+        </div>
+        <form method="post">      
+            {%csrf_token%}
+            {{form.as_p}}
 
-    <input type="submit" value="Insert" class="btn btn-primary btn-lg">
-</form>
+            <input type="submit" value="Insert" class="btn btn-success" id="btnsave">
+        </form>
+    </div>
+    <div class="col-sm-7">
+        <div class="container mt-5">
+            <h2 class="text-left alert alert-info"> Student Details </h2>
+       </div>
+       
 
+    </div>
+</div>
 
 {% endblock %}
