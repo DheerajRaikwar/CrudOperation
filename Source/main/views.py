@@ -21,6 +21,9 @@ def save_file(request):
             password = request.POST['password']
             user = User(name=name,email=email,Dob=dob,city=city,password=password)
             user.save()
+            stud = User.objects.values()
+            print(stud)
+            student_data = list(stud)
             return JsonResponse({'status':'Save'})
         else:
             return JsonResponse({'status':0})

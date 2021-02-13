@@ -1,7 +1,9 @@
 <script>
+    // insert data using ajax
     $("#btnsave").click(function(){
-        console.log("save button clicked");
-    let nm = $("#nameid").val()
+        //console.log("save button clicked");
+    output = "";
+        let nm = $("#nameid").val()
     let em = $("#emailid").val()
     let dob = $("#dobid").val()
     let city = $("#cityid").val()
@@ -34,7 +36,22 @@
             method:"POST",
             data : mydata,
             success:function(data){
-                console.log(data);
+                mydatafile = data.student_data;
+                if(data.status=='Save')
+                {
+                    console.log("Successfully submited");
+                    //console.lgo(data.student_data)
+                    for(i=0;i<mydatafile.length;i++)
+                    {
+                        output += "<tr><td>" + mydatafile[i].name + "</td><td>" +mydatafile[i].email + "</td><td>" + mydatafile[i].Dob +"</td><td>" + mydatafile[i].city + "</td><td>" + mydatafile[i].password +"</td><td> <input type='button'  class='btn btn-warning btn-sm' value='Edit'  data-sid="+ mydatafile[i].name +"/> <input type='button'  class='btn btn-warning btn-sm' value='Delete'  data-sid="+ mydatafile[i].name +"/>"
+                    }
+                    $("#thboydy").html(output);
+                    $("form")[0].reset();
+                    
+                }
+                if(data.status==0){
+                    console.log("Not save!!")
+                }
             },
 
 
@@ -47,6 +64,7 @@
     console.log(pas);
     */ 
 
+    // delete data using ajax
     });
     
 </script>
