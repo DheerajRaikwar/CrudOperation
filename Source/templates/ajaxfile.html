@@ -6,6 +6,7 @@
     let dob = $("#dobid").val()
     let city = $("#cityid").val()
     let pas = $("#passwordid").val()
+    let csr = $("input[name=csrfmiddlewaretoken]").val();
     if(nm=="")
     {
         console.log("Please Enter Name")
@@ -27,7 +28,7 @@
         console.log("Please Enter Name")
     }
     else{
-        mydata = {name:nm,email:em,password:pas,Dob:dob,city:city}
+        mydata = {name:nm,email:em,password:pas,Dob:dob,city:city,csrfmiddlewaretoken:csr};
         $.ajax({
             url:"{%url 'save' %}",
             method:"POST",
