@@ -1,0 +1,14 @@
+{%extends 'Base.html'%}
+{% load static %}
+{% block indexblock %}
+
+<form method="post">
+   
+    {%csrf_token%}
+    {{form.as_p}}
+
+    <input type="submit" value="Insert" class="btn btn-primary btn-lg">
+</form>
+
+
+{% endblock %}
