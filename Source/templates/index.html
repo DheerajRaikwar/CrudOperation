@@ -19,7 +19,36 @@
         <div class="container mt-5">
             <h2 class="text-left alert alert-info"> Student Details </h2>
        </div>
-       
+       <table class="table table-hover">
+           <thead>
+               <tr>
+                   <th scope="col"> Name </th>
+                   <th scope="col"> Email </th>
+                   <th scope="col"> DOB </th>
+                   <th scope="col"> City </th>
+                   <th scope="col"> Password </th>
+                   <th scope="col"> Action </th>
+               </tr>
+           </thead>
+           <tbody>
+               {% for st in stud %}
+               <tr>
+                   <td> {{st.name}}</td>
+                   <td> {{st.email}}</td>
+                   <td> {{st.Dob}}</td>
+                   <td> {{st.city}}</td>
+                   <td> {{st.password}}</td>
+                   <td>
+                       <input type="button" data-sid="{{st.Name}}" 
+                       class="btn btn-warning btn-sm" value="Edit">
+                       <input type="button" data-sid="{{st.Name}}" 
+                       class="btn btn-danger btn-sm" value="Delete">
+                   </td>
+               </tr>
+               {% endfor %}
+           </tbody>
+       </table>
+
 
     </div>
 </div>
