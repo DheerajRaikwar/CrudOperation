@@ -1,62 +1,69 @@
 <script>
     // insert data using ajax
-    $("#btnsave").click(function(){
+    $("#btnsave").click(function()
+    {
         //console.log("save button clicked");
-    output = "";
+        output = "";
         let nm = $("#nameid").val()
-    let em = $("#emailid").val()
-    let dob = $("#dobid").val()
-    let city = $("#cityid").val()
-    let pas = $("#passwordid").val()
-    let csr = $("input[name=csrfmiddlewaretoken]").val();
-    if(nm=="")
-    {
-        console.log("Please Enter Name")
-    }
-    else if(em=="")
-    {
-        console.log("Please Enter Name")
-    }
-    else if(dob=="")
-    {
-        console.log("Please Enter Name")
-    }
-    else if(city=="")
-    {
-        console.log("Please Enter Name")
-    }
-    else if(pas=="")
-    {
-        console.log("Please Enter Name")
-    }
-    else{
-        mydata = {name:nm,email:em,password:pas,Dob:dob,city:city,csrfmiddlewaretoken:csr};
-        $.ajax({
-            url:"{%url 'save' %}",
-            method:"POST",
-            data : mydata,
-            success:function(data){
-                mydatafile = data.student_data;
-                if(data.status=='Save')
+        let em = $("#emailid").val()
+        let dob = $("#dobid").val()
+        let city = $("#cityid").val()
+        let pas = $("#passwordid").val()
+        let csr = $("input[name=csrfmiddlewaretoken]").val();
+        if(nm=="")
+        {
+            console.log("Please Enter Name")
+        }
+        else if(em=="")
+        {
+            console.log("Please Enter Name")
+        }
+        else if(dob=="")
+         {
+            console.log("Please Enter Name")
+        }
+        else if(city=="")
+        {
+            console.log("Please Enter Name")
+         }
+        else if(pas=="")
+        {
+            console.log("Please Enter Name")
+        }
+        else
+        {
+            mydata = {name:nm,email:em,password:pas,Dob:dob,city:city,csrfmiddlewaretoken:csr};
+            $.ajax(
+            {
+                url:"{%url 'save' %}",
+                method:"POST",
+                data : mydata,
+                success:function(data)
                 {
-                    console.log("Successfully submited");
-                    //console.lgo(data.student_data)
-                    for(i=0;i<mydatafile.length;i++)
+                    mydatafile = data.student_data;
+                    if(data.status=='Save')
                     {
-                        output += "<tr><td>" + mydatafile[i].name + "</td><td>" +mydatafile[i].email + "</td><td>" + mydatafile[i].Dob +"</td><td>" + mydatafile[i].city + "</td><td>" + mydatafile[i].password +"</td><td> <input type='button'  class='btn btn-warning btn-sm' value='Edit'  data-sid="+ mydatafile[i].name +"/> <input type='button'  class='btn btn-warning btn-sm' value='Delete'  data-sid="+ mydatafile[i].name +"/>"
-                    }
-                    $("#thboydy").html(output);
-                    $("form")[0].reset();
+                        console.log("Successfully submited");
+                    //console.lgo(data.student_data)
+                        for(i=0;i<mydatafile.length;i++)
+                        {
+                            output += "<tr><td>" + mydatafile[i].name + "</td><td>" +mydatafile[i].email + "</td><td>" + mydatafile[i].Dob +"</td><td>" + mydatafile[i].city + "</td><td>" + mydatafile[i].password +"</td><td> <input type='button'  class='btn btn-warning btn-sm btn-edit' value='Edit'  data-sid="+ mydatafile[i].name +"/> <input type='button'  class='btn btn-danger btn-sm btn-del' value='Delete'  data-sid="+ mydatafile[i].name +"/>"
+                        }
+                        $("#thboydy").html(output);
+                        $("form")[0].reset();
                     
-                }
-                if(data.status==0){
-                    console.log("Not save!!")
-                }
-            },
+                    }
+                    if(data.status==0)
+                    {
+                        console.log("Not save!!")
+                    }
+                },
 
 
-        })
-    }
+            } )
+        }
+    });
+
     /*console.log(nm);
     console.log(em);
     console.log(dob);
@@ -65,6 +72,24 @@
     */ 
 
     // delete data using ajax
+    $("tbody").on("click", ".btn-del",function()
+    {
+        console.log("Delete button clicked");
+        let id= $(this).attr("data-sid");
+        let csr = $("input[name=csrfmiddlewaretoken").val();
+        console.log(id);
+        md = {sid:id,csrfmiddlewaretoken:csr}
+        $.ajax({
+            url:"{% url 'deletedata' %}",
+            method: "POST",
+            data : md,
+            success:function(data){
+                console.log(data);
+            },
+
+
+        })
+    
     });
     
 </script>

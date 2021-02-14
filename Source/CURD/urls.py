@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.Homepage,name='home'),
     path('save/',views.save_file,name='save'),
+    path('delete/',views.delete_data,name='deletedata'),
 ]

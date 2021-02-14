@@ -27,3 +27,17 @@ def save_file(request):
             return JsonResponse({'status':'Save'})
         else:
             return JsonResponse({'status':0})
+
+#deletion of dta ---> request comes from AJAX
+
+def delete_data(request):
+    if request.method == "POST":
+        id = request.POST.get('sid')
+        print(id)
+        myuser = User.objects.get(pk=id)
+        myuser.delete()
+        return JsonResponse({'status':1})
+    else:
+        return JsonResponse({'status':0})
+
+        
