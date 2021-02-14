@@ -14,12 +14,13 @@ def save_file(request):
     if request.method == "POST":
         form = StudentRegiser(request.POST)
         if form.is_valid():
+            no = request.POST['no']
             name = request.POST['name']
             email = request.POST['email']
             dob = request.POST['Dob']
             city = request.POST['city']
             password = request.POST['password']
-            user = User(name=name,email=email,Dob=dob,city=city,password=password)
+            user = User(no=no,name=name,email=email,Dob=dob,city=city,password=password)
             user.save()
             stud = User.objects.values()
             print(stud)

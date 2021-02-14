@@ -4,35 +4,40 @@
     {
         //console.log("save button clicked");
         output = "";
+        let no = $("#noid").val()
         let nm = $("#nameid").val()
         let em = $("#emailid").val()
         let dob = $("#dobid").val()
         let city = $("#cityid").val()
         let pas = $("#passwordid").val()
         let csr = $("input[name=csrfmiddlewaretoken]").val();
-        if(nm=="")
+        if(no=="")
+        {
+            console.log("Please Enter ID")
+        }
+        else if(nm=="")
         {
             console.log("Please Enter Name")
         }
         else if(em=="")
         {
-            console.log("Please Enter Name")
+            console.log("Please Enter email ")
         }
         else if(dob=="")
          {
-            console.log("Please Enter Name")
+            console.log("Please Enter DOB")
         }
         else if(city=="")
         {
-            console.log("Please Enter Name")
+            console.log("Please Enter City")
          }
         else if(pas=="")
         {
-            console.log("Please Enter Name")
+            console.log("Please Enter Pas")
         }
         else
         {
-            mydata = {name:nm,email:em,password:pas,Dob:dob,city:city,csrfmiddlewaretoken:csr};
+            mydata = {no:no,name:nm,email:em,password:pas,Dob:dob,city:city,csrfmiddlewaretoken:csr};
             $.ajax(
             {
                 url:"{%url 'save' %}",
@@ -47,7 +52,7 @@
                     //console.lgo(data.student_data)
                         for(i=0;i<mydatafile.length;i++)
                         {
-                            output += "<tr><td>" + mydatafile[i].name + "</td><td>" +mydatafile[i].email + "</td><td>" + mydatafile[i].Dob +"</td><td>" + mydatafile[i].city + "</td><td>" + mydatafile[i].password +"</td><td> <input type='button'  class='btn btn-warning btn-sm btn-edit' value='Edit'  data-sid="+ mydatafile[i].name +"/> <input type='button'  class='btn btn-danger btn-sm btn-del' value='Delete'  data-sid="+ mydatafile[i].name +"/>"
+                            output += "<tr><td>" + mydatafile[i].no + "</td><td>" + mydatafile[i].name + "</td><td>" +mydatafile[i].email + "</td><td>" + mydatafile[i].Dob +"</td><td>" + mydatafile[i].city + "</td><td>" + mydatafile[i].password +"</td><td> <input type='button'  class='btn btn-warning btn-sm btn-edit' value='Edit'  data-sid="+ mydatafile[i].no +"/> <input type='button'  class='btn btn-danger btn-sm btn-del' value='Delete'  data-sid="+ mydatafile[i].no +"/>"
                         }
                         $("#thboydy").html(output);
                         $("form")[0].reset();

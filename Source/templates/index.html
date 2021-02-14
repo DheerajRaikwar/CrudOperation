@@ -22,6 +22,7 @@
        <table class="table table-hover">
            <thead>
                <tr>
+                    <th scope="col"> No. </th>
                    <th scope="col"> Name </th>
                    <th scope="col"> Email </th>
                    <th scope="col"> DOB </th>
@@ -33,15 +34,16 @@
            <tbody id="thbody"> 
                {% for st in stud %}
                <tr>
+                    <td> {{st.no}}</td>
                    <td> {{st.name}}</td>
                    <td> {{st.email}}</td>
                    <td> {{st.Dob}}</td>
                    <td> {{st.city}}</td>
                    <td> {{st.password}}</td>
                    <td>
-                       <input type="button" data-sid="{{st.Name}}" 
+                       <input type="button" data-sid="{{st.no}}" 
                        class="btn btn-warning btn-sm btn-edit" value="Edit">
-                       <input type="button" data-sid="{{st.Name}}" 
+                       <input type="button" data-sid="{{st.no}}" 
                        class="btn btn-danger btn-sm btn-del" value="Delete">
                    </td>
                </tr>
